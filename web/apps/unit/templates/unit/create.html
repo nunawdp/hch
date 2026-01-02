@@ -1,0 +1,53 @@
+<form action="{% url "unit:create" %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_name">Name</label>
+        <select name="name" id="id_name" class="form-select select2" data-placeholder="Company Name">
+            <option></option>
+            <option value="KPN">KPN</option>
+            <option value="MBLE">MBLE</option>
+            <option value="WWPI">WWPI</option>
+            <option value="BBS">BBS</option>
+            <option value="MJR">MJR</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="id_brand">Brand</label>
+        <select name="Brand" id="id_brand" class="form-select select2" data-placeholder="Brand Unit">
+            <option></option>
+            <option value="HINO">HINO</option>
+            <option value="MERCEDEZ BANZ">MERCEDEZ BANZ</option>
+            <option value="SCANIA">SCANIA</option>
+            <option value="DONGFENG">DONGFENG</option>
+            <option value="FOTON">FOTON</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="id_prefix">Prefix</label>
+        <select name="Prefix" id="id_prefix" class="form-select select2" data-placeholder="Prefix Units">
+            <option></option>
+            <option value="KPNDT">KPNDT</option>
+            <option value="DTMB">DTMB</option>
+            <option value="DTWG">DTWG</option>
+            <option value="BSDT">BSDT</option>
+            <option value="MJRDT">MJRDT</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="id_code">Code</label>
+        <input type="text" name="code" id="id_code" class="form-control" placeholder="Code Unit">
+    </div>
+    <div class="mb-3">
+        <label for="id_tara">Tara</label>
+        <div class="input-group">
+            <input type="text" name="tara" id="id_tara" class="form-control" placeholder="Weight Unit e.g 13000">
+            <label for="unit" class="input-group-text">Tons</label>
+        </div>
+        <small class="text-gray-600 fst-italic">*You can blank this field.</small>
+    </div>
+    <div class="mb-3">
+        <label for="id_operator">Operator</label>
+        <input type="text" name="operator" id="id_operator" class="form-control" placeholder="Operator Name">
+        <small class="text-gray-600 fst-italic">*You can blank this field.</small>
+    </div>
+</form>

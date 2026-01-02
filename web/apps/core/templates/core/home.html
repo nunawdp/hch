@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title_page %}{{ APP_NAME }} - {{ title_page }}{% endblock title_page %}
+
+{% block content %}
+<div class="card bg-dark text-white bg-gradient rounded-4 border-0 shadow-sm mb-3">
+    <div class="card-body flex-column d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px) !important;">
+        <h1 class="fs-1 text-uppercase flex-column d-flex text-center">
+            <span>WELCOME</span>
+            <span>{{ user.profile.name }}</span>
+        </h1>
+        <a href="{% url "hch:main" %}" class="btn btn-primary fs-4 rounded-4 p-3 mb-3 fw-bold shadow">
+            GET STARTED
+        </a>
+        <p class="m-0 text-gray-500">Hauling Check System</p>
+        <p class=" text-gray-500">PT. Kalimantan Prima Nusantara</p>
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+
+</script>
+{% endblock script %}

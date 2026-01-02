@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ APP_NAME }}{% endblock page_title %}
+
+{% block content %}
+<!-- STATISTIC -->
+<div class="flex-column d-flex flex-md-row gap-3 mb-3">
+    <div class="card w-100 rounded-4 border-0 shadow-sm">
+        <div class="card-header text-gray-800">
+            <i class="calendar alternate outline icon"></i>
+            Today Hauling
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <i class="big icons">
+                        <i class="green shipping fast icon"></i>
+                        <i class="corner add icon"></i>
+                    </i>
+                </div>
+                <div class="flex-column text-center">
+                    <h2 class="m-0">20</h2>
+                    <p class="ts-8">Record</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card w-100 rounded-4 border-0 shadow-sm">
+        <div class="card-header text-gray-800">
+            <i class="calendar check icon"></i>
+            Total Hauling
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <i class="big icons">
+                        <i class="orange list icon"></i>
+                        <i class="corner check icon"></i>
+                    </i>
+                </div>
+                <div class="flex-column text-center">
+                    <h2 class="m-0">20</h2>
+                    <p class="ts-8">Record</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card w-100 rounded-4 border-0 shadow-sm">
+        <div class="card-header text-gray-800">
+            <i class="truck icon"></i>
+            Total Units
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <i class="big blue truck icon"></i>
+                </div>
+                <div class="flex-column text-center">
+                    <h2 class="m-0">20</h2>
+                    <p class="ts-8">Unit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card w-100 rounded-4 border-0 shadow-sm">
+        <div class="card-header text-gray-800">
+            <i class="star icon"></i>
+            Total Feed
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <i class="big red star icon"></i>
+                </div>
+                <div class="flex-column text-center">
+                    <h2 class="m-0">{{ total_feed }}</h2>
+                    <p class="ts-8">Record</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LAST ACTIVITY RECORD -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="table icon"></i>
+        Last Activity
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-nowrap ts-9">
+                <thead class="table-info">
+                    <tr>
+                        <th class="text-gray-800">No.</th>
+                        <th class="text-gray-800">Date</th>
+                        <th class="text-gray-800">Topic</th>
+                        <th class="text-gray-800">Messages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-gray-900">5.</td>
+                        <td class="text-gray-900">Thu, 30 Dec 2025. 14:09:12 WIB</td>
+                        <td class="text-gray-900">Account, Apps</td>
+                        <td>
+                            <a class="btn-custom">
+                                <div>
+                                    Darsono has set BSDT102 passed the checker point with no load.
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-900">4.</td>
+                        <td class="text-gray-900">Thu, 30 Dec 2025. 14:05:42 WIB</td>
+                        <td class="text-gray-900">Account</td>
+                        <td>
+                            <a class="btn-custom">
+                                <div>
+                                    Darsono has logged in.
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-900">3.</td>
+                        <td class="text-gray-900">Thu, 30 Dec 2025. 14:03:42 WIB</td>
+                        <td class="text-gray-900">Account</td>
+                        <td>
+                            <a class="btn-custom">
+                                <div>
+                                    Wildan has logged out.
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-900">2.</td>
+                        <td class="text-gray-900">Thu, 30 Dec 2025. 14:00:42 WIB</td>
+                        <td class="text-gray-900">Account, Apps</td>
+                        <td class="text-gray-900">Wildan has set BSDT101 passed the checker point with coal load.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-900">1.</td>
+                        <td class="text-gray-900">Thu, 30 Dec 2025. 13:55:22 WIB</td>
+                        <td class="text-gray-900">Account</td>
+                        <td class="text-gray-900">Wildan has logged in.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- GRAPHIC STATISTIC -->
+<div class="d-flex flex-column flex-md-row gap-3 mb-3">
+    <div class="card w-100">
+        <div class="card-header">
+            <i class="chart bar icon">
+            </i>
+            Hauling Record
+        </div>
+        <div class="card-body">
+            <div style="height: 250px;">
+                <h3>SPACE CANVAS CHART.JS</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card w-100 w-md-50">
+        <div class="card-header">
+            <i class="chart pie icon">
+            </i>
+            Hauling Record
+        </div>
+        <div class="card-body">
+            <div style="height: 250px;">
+                <h3>SPACE CANVAS CHART.JS</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WORK MATRIC -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="th list icon"></i>
+        Status Feed
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-nowrap ts-9">
+                <thead class="table-info">
+                    <th class="text-gray-700">#</th>
+                    <th class="text-gray-700">Employee Name</th>
+                    <th class="text-gray-700">Date</th>
+                    <th class="text-gray-700">Message</th>
+                    <th class="text-gray-700 text-center">Eviden</th>
+                </thead>
+                <tbody>
+                    {% for sf in status_feed %}
+                    <tr>
+                        <td class="text-gray-900">{{ forloop.revcounter }}</td>
+                        <td class="text-gray-900">{{ sf.user.profile.name }}</td>
+                        <td class="text-gray-900">{{ sf.created|date:"D, d M Y. H:i:s" }} WIB</td>
+                        <td class="text-gray-900">{{ sf.message }}</td>
+                        <td class="text-gray-900 text-center">
+                            {% if sf.foto %}
+                            <a onclick="window.open('{{ sf.foto.url }}')" class="btn-custom">
+                                <div><i class="eye icon"></i></div>
+                            </a>
+                            {% else %}
+                            <a onclick="$.alert('Ops sorry, this status without any image.')" class="btn-custom">
+                                <div><i class="red dont icon"></i></div>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

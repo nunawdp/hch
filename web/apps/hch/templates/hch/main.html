@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title_page %}{{ APP_NAME }} - {{ title_page }}{% endblock title_page %}
+
+{% block content %}
+<div style="padding-bottom: 82.67px;">
+    <!-- SUMMARY MINIMAL I -->
+    <div class="flex-column d-flex flex-md-row gap-3 mb-3">
+        <div class="card w-100 rounded-4 border-0 shadow-sm">
+            <div class="card-header text-gray-700">
+                <i class="shipping fast icon"></i>
+                Today Out
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="big icons">
+                            <i class="blue shipping fast icon"></i>
+                            <i class="corner check icon"></i>
+                        </i>
+                    </div>
+                    <div class="text-center">
+                        <div class="fs-2 fw-bold">{{ today_co }}</div>
+                        <div class="ts-7">Record</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="" class="btn-custom">
+                    <div class="d-flex justify-content-between fst-italic">
+                        <span>Check detail</span>
+                        <span><i class="angle right icon"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="card w-100 rounded-4 border-0 shadow-sm">
+            <div class="card-header text-gray-700">
+                <i class="shipping fast icon" style="transform: scaleX(-1)"></i>
+                Today In
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="big icons" >
+                            <i class="orange shipping fast icon" style="transform: scaleX(-1)"></i>
+                            <i class="corner check icon"></i>
+                        </i>
+                    </div>
+                    <div class="text-center">
+                        <div class="fs-2 fw-bold">{{ today_ci }}</div>
+                        <div class="ts-7">Record</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="" class="btn-custom">
+                    <div class="d-flex justify-content-between fst-italic">
+                        <span>Check detail</span>
+                        <span><i class="angle right icon"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="card w-100 rounded-4 border-0 shadow-sm">
+            <div class="card-header text-gray-700">
+                <i class="shipping fast icon"></i>
+                Total Out
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="big icons">
+                            <i class="shipping fast icon"></i>
+                            <i class="corner purple shipping fast icon"></i>
+                        </i>
+                    </div>
+                    <div class="text-center">
+                        <div class="fs-2 fw-bold">{{ total_record }}</div>
+                        <div class="ts-7">Record</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="" class="btn-custom">
+                    <div class="d-flex justify-content-between fst-italic">
+                        <span>Check detail</span>
+                        <span><i class="angle right icon"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUMMARY MINIMAL II -->
+    <div class="flex-column d-flex flex-md-row gap-3 mb-3">
+        <div class="card card-body rounded-4 bg-primary bg-gradient bg-opacity-75">
+            <div class="d-flex align-items-center justify-content-between text-white fs-5">
+                <div>Coal</div>
+                <div class="fw-semibold">{{ load_coal }}</div>
+            </div>
+        </div>
+        <div class="card card-body rounded-4 bg-dark bg-gradient bg-opacity-75">
+            <div class="d-flex align-items-center justify-content-between text-white fs-5">
+                <div>OB</div>
+                <div class="fw-semibold">{{ load_ob }}</div>
+            </div>
+        </div>
+        <div class="card card-body rounded-4 bg-danger bg-gradient bg-opacity-75">
+            <div class="d-flex align-items-center justify-content-between text-white fs-5">
+                <div>Etc</div>
+                <div class="fw-semibold">{{ load_etc }}</div>
+            </div>
+        </div>
+        <div class="card card-body rounded-4 bg-dark bg-gradient bg-opacity-75">
+            <div class="d-flex align-items-center justify-content-between text-white fs-5">
+                <div>No load</div>
+                <div class="fw-semibold">{{ load_noload }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOG RECORD LAST 10 -->
+    <div class="card mb-3">
+        <div class="card-header text-gray-800">
+            <i class="table icon"></i>
+            Log Record
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover text-nowrap">
+                    <tbody>
+                        {% for r in record_list %}
+                        <tr>
+                            <td>{{ r.id_message }}</td>
+                            <td>
+                                {% if r.updated is not None %}
+                                    {{ r.updated|date:"D, d M Y. H:i:s" }}
+                                {% else %}
+                                    {{ r.created|date:"D, d M Y. H:i:s" }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center text-lowercase">{{ r.get_status_display }}</td>
+                            <td>{{ r.message }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-start align-items-center gap-3">
+                <span>Total: {{ total_all_record }} record</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- FLOATING BUTTON CHECK IN & CHECK OUT -->
+<div class="floating-btn flex-column w-100">
+    <div id="clock" class="btn btn-dark mb-2 px-4">
+        Fri, 27 Dec 2025. 10:40:22 WIB
+    </div>
+    <div class="d-flex align-items-center justify-content-center gap-2">
+        <a onclick="createData(this)" data-status="1" data-title="CHECK IN" class="btn btn-primary shadow">
+            <div class="">
+                <i class="icons">
+                    <i class="shipping fast icon" style="transform: scaleX(-1);"></i>
+                    <i class="inverted corner plus icon"></i>
+                </i>
+                CHECK IN
+            </div>
+        </a>
+        <a onclick="createData(this)" data-status="2" data-title="CHECK OUT" class="btn btn-success shadow" >
+            <div class="">
+                <i class="icons">
+                    <i class="shipping fast icon"></i>
+                    <i class="inverted corner plus icon"></i>
+                </i>
+                CHECK OUT
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}
+{% block script %}
+<script>
+    // live clock
+    $(function () {
+
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const $clock = $('#clock');
+
+        const pad = n => n.toString().padStart(2, '0');
+
+        function updateClock() {
+            const d = new Date();
+            const text =
+                `${days[d.getDay()]}, ${pad(d.getDate())} ${months[d.getMonth()]} ${d.getFullYear()}. ` +
+                `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} WIB`;
+
+            $clock.text(text);
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    });
+    
+    // LOGIC UNTUK CHECK IN DAN CHECK OUT
+    function createData(el){
+        const $el = $(el)
+        checkAction({
+            url: `{% url "hch:create" %}`,
+            title: $el.data('title'),
+            data: $el.data('status'),
+            onSuccess() {
+                location.reload();
+            }
+        });
+    }
+</script>
+{% endblock script %}

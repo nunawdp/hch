@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include "includes/header.html" %}
+</head>
+<body>
+    <!-- NAVBAR -->
+    {% block navbar %}
+        {% include "includes/navbar.html" %}
+    {% endblock navbar %}
+    
+    <!-- CONTAIN -->
+    <main>
+        <div class="container" id="main">
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    {% block footer %}
+        {% include "includes/footer.html" %}
+    {% endblock footer %}
+    
+    {% include "includes/modal.html" %}
+
+    {% block script %}{% endblock script %}
+
+    <script>
+        function logout() {
+            confirmFormSubmit({
+                title: "Logout",
+                url: "{% url 'core:logout' %}",
+                csrf: `{% csrf_token %}`,
+                message: "Are you sure want to logout?",
+                confirmText: "Logout",
+                confirmClass: "btn-danger",
+                type: "red"
+            })
+        }
+
+        function createStatus(){
+            const form = `
+            <form action="{% url 'account:create-status' %}" method="POST" enctype="multipart/form-data" id="confirm-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_message">Message</label>
+                    <textarea class="form-control" name="message"></textarea>
+                </div>
+                <label for="id_photo">Photo</label>
+                <input type="file" class="form-control" name="foto">
+            </form>
+            `
+            confirmFormSubmit({
+                title: "New Status",
+                url: "{% url 'account:create-status' %}",
+                content: form,
+                confirmText: "Post",
+                confirmClass: "btn-primary",
+                type: "green",
+            })
+        }
+    </script>
+
+</body>
+</html>

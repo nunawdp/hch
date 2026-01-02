@@ -1,0 +1,47 @@
+<form action="{% url "hch:create" %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <select 
+        name="unit" 
+        id="id_unit" 
+        class="select2-ajax" 
+        data-url="{% url "api:API-unit-list" %}" 
+        data-placeholder="Search unit..."
+        >
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="mb-3 visually-hidden">
+        <label for="id_status">Status</label>
+        <select name="status" id="id_status" class="select2" data-placeholder="Select status...">
+            <option value=""></option>
+            <option value="1">In</option>
+            <option value="2">Out</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="id_load">Load</label>
+        <div class="btn-group w-100" role="group" aria-label="Basic example">
+            <input type="radio" class="btn-check" name="load" id="id_load1" value="1" autocomplete="off" checked>
+            <label class="btn btn-secondary" for="id_load1">Coal</label>
+            <input type="radio" class="btn-check" name="load" id="id_load2" value="2" autocomplete="off">
+            <label class="btn btn-secondary" for="id_load2">OB</label>
+            <input type="radio" class="btn-check" name="load" id="id_load3" value="4" autocomplete="off">
+            <label class="btn btn-secondary" for="id_load3">No Load</label>
+            <input type="radio" class="btn-check" name="load" id="id_load4" value="3" autocomplete="off">
+            <label class="btn btn-secondary" for="id_load4">Etc</label>
+        </div>
+        {% comment %} <label for="id_load">Load</label>
+        <select name="load" id="id_load" class="select2" data-placeholder="Select load...">
+            <option value=""></option>
+            <option value="1">Coal</option>
+            <option value="2">Over Burden</option>
+            <option value="3">Etc</option>
+            <option value="4">No Load</option>
+        </select> {% endcomment %}
+    </div>
+    <div class="mb-3 visually-hidden">
+        <label for="id_message">Message</label>
+        <textarea name="message" id="id_message" class="form-control"></textarea>
+    </div>
+</form>

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block page_title %}{{ APP_NAME }} - {{ page_title }}{% endblock page_title %}
+{% block content %}
+<div class="d-flex flex-column flex-lg-row gap-3 mb-3">
+    <div class="card rounded-4 border-0 shadow-sm">
+        <div class="card-header d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="circular inverted small user icon"></i>
+                Profile
+            </div>
+            <div>
+                <a href=""><i class="edit icon"></i></a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    {% load static %}
+                    <div class="d-flex justify-content-center justify-content-md-start">
+                        <div class="foto-box">
+                            <img src="{{ user.profile.foto.url }}" alt="error">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="d-flex justify-content-center justify-content-md-start mb-3">
+                        <h3>{{ user.profile.name }}</h3>
+                    </div>
+                    <table class="table table-borderedless">
+                        <tbody>
+                            <tr>
+                                <td class="ps-0 align-middle text-gray-800">NIK</td>
+                                <td class="ps-0 align-middle text-gray-900">:</td>
+                                <td class="ps-0 align-middle text-gray-900">{{ user.profile.nik }}</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-0 align-middle text-gray-800">Position</td>
+                                <td class="ps-0 align-middle text-gray-900">:</td>
+                                <td class="ps-0 align-middle text-gray-900">{{ user.profile.position }}</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-0 align-middle text-gray-800">Address</td>
+                                <td class="ps-0 align-middle text-gray-900">:</td>
+                                <td class="ps-0 align-middle text-gray-900">{{ user.profile.address }}.</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-0 align-middle text-gray-800">Whatsapp</td>
+                                <td class="ps-0 align-middle text-gray-900">:</td>
+                                <td class="ps-0 align-middle text-gray-900">{{ user.profile.whatsapp }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card w-100 w-lg-50 rounded-4">
+        <div class="card-header">
+            <i class="star icon"></i>
+            Status
+        </div>
+        <div class="card-body d-flex justify-content-center align-items-center bg-info bg-gradient">
+            <h3 class="m-0 text-center">{{ last_status.message }}</h3>
+        </div>
+        <div class="card-footer text-center">
+            <a onclick="createStatus()" style="cursor: pointer;">
+                <div>
+                    <i class="plus icon"></i>
+                    New Status
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<hr class="divider">
+<div class="d-flex gap-3 mb-3">
+    <a href="" class="w-100">
+        <div class="card card-body bg-warning text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="fw-semibold">
+                    Report Bugs
+                </div>
+                <div><i class="bug icon"></i></div>
+            </div>
+        </div>
+    </a>
+    <div class="card card-body bg-danger text-white w-100" onclick="logout()" style="cursor: pointer;">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-semibold">
+                Logout
+            </div>
+            <div><i class="power off icon"></i></div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    function logout() {
+        confirmFormSubmit({
+            title: "Logout",
+            url: "{% url 'core:logout' %}",
+            csrf: `{% csrf_token %}`,
+            message: "Are you sure want to logout?",
+            confirmText: "Logout",
+            confirmClass: "btn-danger",
+            type: "red"
+        })
+    }
+
+    function createStatus(){
+        const form = `
+        <form action="{% url 'account:create-status' %}" method="POST" enctype="multipart/form-data" id="confirm-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_message">Message</label>
+                <textarea class="form-control" name="message"></textarea>
+            </div>
+            <label for="id_photo">Photo</label>
+            <input type="file" class="form-control" name="foto">
+        </form>
+        `
+        confirmFormSubmit({
+            title: "New Status",
+            url: "{% url 'account:create-status' %}",
+            content: form,
+            confirmText: "Post",
+            confirmClass: "btn-primary",
+            type: "green",
+        })
+    }
+</script>
+{% endblock script %}

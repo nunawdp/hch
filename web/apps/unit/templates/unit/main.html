@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title_page %}{{ APP_NAME }} - {{ page_title }}{% endblock title_page %}
+
+{% block content %}
+<div class="card border-0 rounded-4 shadow-sm mb-3">
+    <div class="card-header">
+        <i class="table icon"></i>
+        List Unit
+    </div>
+    <div class="card-body">
+        <div class="mb-2">
+            <a onclick="createData(this)" class="btn btn-success">
+                <i class="plus icon"></i>
+                Add Unit
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-info">
+                    <tr>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Prefix</th>
+                        <th>Code</th>
+                        <th>Tara</th>
+                        <th>Operator</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    {% for u in unit %}
+                        <tr>
+                            <td>{{ u.name }}</td>
+                            <td>{{ u.brand }}</td>
+                            <td>{{ u.prefix }}</td>
+                            <td>{{ u.code }}</td>
+                            <td>{{ u.tara }}</td>
+                            <td>{{ u.operator }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block script %}
+<script>
+    // LOGIC UNTUK CHECK IN DAN CHECK OUT
+    function createData(el){
+        const $el = $(el)
+        checkAction({
+            url: `{% url "unit:create" %}`,
+            title: 'Add Unit',
+            onSuccess() {
+                location.reload();
+            }
+        });
+    }
+</script>
+{% endblock script %}
