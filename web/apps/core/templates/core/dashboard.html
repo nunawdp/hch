@@ -206,7 +206,7 @@
                         <td class="text-gray-900">{{ sf.message }}</td>
                         <td class="text-gray-900 text-center">
                             {% if sf.foto %}
-                            <a onclick="window.open('{{ sf.foto.url }}')" class="btn-custom">
+                            <a onclick="previewImage(this)" data-image="{{ sf.foto.url }}" data-message="{{ sf.message }}" class="btn-custom">
                                 <div><i class="eye icon"></i></div>
                             </a>
                             {% else %}
@@ -222,4 +222,32 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}
+{% block script %}
+<script>
+    function previewImage(el){
+        const $el = $(el)
+        const dataImg = $el.data('image')
+        const dataMsg = $el.data('message')
+        $.confirm({
+            title: 'Konfirmasi',
+            content: `<div class="d-flex flex-column aling-items-center">
+                        <div class="alert alert-info">"${dataMsg}"</div>
+                        <img src="${dataImg}" style="max-width: 100%; height: auto;">
+                    </div>`,
+            columnClass: 'large',
+            buttons: {
+                close: {
+                    btnClass: 'btn-secondary',
+                    action: function () {
+                    
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock script %}
+
+

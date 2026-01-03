@@ -41,6 +41,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         kwargs = self.kwargs
         return super().get_context_data(**kwargs)
     
+    
 class LoginView(LoginView):
     template_name = "core/login.html"
     authentication_form = AuthenticationForm

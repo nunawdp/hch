@@ -44,6 +44,6 @@ class StatusCreateView(LoginRequiredMixin, View):
             obj = form.save(commit=False)
             obj.user = request.user
             obj.save()
-            return redirect("account:profile")
+            return redirect("core:dashboard")
         else:
             return JsonResponse({"message": "failed"}, status=500)
